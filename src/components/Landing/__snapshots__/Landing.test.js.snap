@@ -5,13 +5,15 @@ exports[`Landing should match the snapshot with all data passed in 1`] = `
   id="landing-container"
 >
   <h3>
-    Text from movie here
+    this is sample text
   </h3>
   <h3>
-    - Movie Title
+    - 
+    movie title
   </h3>
   <h3>
-    - Movie Year
+    - 
+    11-5-2018
   </h3>
   <h4>
     SELECT A CATEGORY
