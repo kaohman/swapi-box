@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing should match the snapshot with all data passed in 1`] = `
+<div
+  id="landing-container"
+>
+  <h3>
+    Text from movie here
+  </h3>
+  <h3>
+    - Movie Title
+  </h3>
+  <h3>
+    - Movie Year
+  </h3>
+  <h4>
+    SELECT A CATEGORY
+  </h4>
+</div>
+`;
