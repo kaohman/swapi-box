@@ -22,6 +22,11 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.3.5"
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
