@@ -4,6 +4,7 @@ import './App.css';
 import '../../main.scss';
 import Button from '../Button/Button';
 import CardContainer from '../CardContainer/CardContainer';
+import Landing from '../Landing/Landing';
 
 class App extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class App extends Component {
       <div>
         <h1>SWAPI-BOX</h1>
         <Button />
+        <Landing />
         <CardContainer />
       </div>
     );
