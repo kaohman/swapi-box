@@ -1,4 +1,5 @@
 #card-container {
+  @include main-content-style();
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: space-between;

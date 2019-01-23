@@ -4,8 +4,8 @@ const Card = (props) => {
   return (
     <div className='card'>
       <img className='favorite-icon'/>
-      <img className='card-icon'/>
       <h3>NAME HERE</h3>
+      <img className='card-icon'/>
       <p>Other text here</p>
     </div>
   );

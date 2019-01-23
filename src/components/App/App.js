@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      landing: false
+      landing: true
     }
   }
 
