@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Landing = ({ text, title, date }) => {
 
@@ -12,6 +13,17 @@ const Landing = ({ text, title, date }) => {
   );
 }
 
+Landing.propTypes = {
+  text: PropTypes.string,
+  title: PropTypes.string,
+  date: PropTypes.string
+}
+
+Landing.defaultProps = {
+  text: 'DEFAULT TEXT',
+  title: 'DEFAULT TITLE',
+  date: '00-00-0000'
+}
 
 
 export default Landing;
