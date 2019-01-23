@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
+      landing: false
     }
   }
 
@@ -19,8 +19,9 @@ class App extends Component {
       <div>
         <h1>SWAPI-BOX</h1>
         <Button />
-        <Landing />
-        <CardContainer />
+        {
+          this.state.landing ? <Landing /> : <CardContainer />
+        }
       </div>
     );
   }

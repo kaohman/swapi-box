@@ -4,7 +4,7 @@ const Landing = (props) => {
 
 
   return (
-    <div>
+    <div className='main-content-div'>
     </div>
   );
 }

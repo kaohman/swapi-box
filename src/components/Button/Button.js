@@ -10,7 +10,11 @@ class Button extends Component {
 
   render() {
     return (
-      <div>
+      <div id='button-container'>
+        <button>Characters</button>
+        <button>Planets</button>
+        <button>Vehicles</button>
+        <button>Favorites</button>
       </div>
     );
   }
