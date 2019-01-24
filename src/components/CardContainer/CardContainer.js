@@ -1,12 +1,10 @@
 import React from 'react';
-import Card from '../Card/Card';
+import People from '../People/People';
 
 const CardContainer = (props) => {
-
-
   return (
-    <div id='card-containers'>
-      <Card />
+    <div id='card-container'>
+      <People people={props.people} />
     </div>
   );
 }

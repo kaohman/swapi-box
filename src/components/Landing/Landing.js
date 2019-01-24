@@ -25,5 +25,4 @@ Landing.defaultProps = {
   date: '00-00-0000'
 }
 
-
 export default Landing;

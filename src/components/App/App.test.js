@@ -18,6 +18,12 @@ describe('App', () => {
 
       />
     );
+
+    wrapper.setState({
+      landing: true,
+      loaded: false,
+      scrollText: {}
+    })
   });
 
   it('should match the snapshot with all data passed in', () => {

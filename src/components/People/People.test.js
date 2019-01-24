@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './Button';
+import People from './People';
 import { shallow } from 'enzyme';
 
-describe('Button', () => {
+describe('People', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <Button
+      <People
 
       />
     );
@@ -17,9 +17,4 @@ describe('Button', () => {
   it('should match the snapshot with all data passed in', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('should have a default state', () => {
-    
-  });
-  
 });

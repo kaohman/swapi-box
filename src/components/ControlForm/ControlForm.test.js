@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Card from './Card';
+import ControlForm from './ControlForm';
 import { shallow } from 'enzyme';
 
-describe('Card', () => {
+describe('ControlForm', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <Card
+      <ControlForm
 
       />
     );
@@ -17,4 +17,9 @@ describe('Card', () => {
   it('should match the snapshot with all data passed in', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should have a default state', () => {
+    
+  });
+  
 });
