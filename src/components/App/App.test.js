@@ -51,6 +51,16 @@ describe('App', () => {
 
   });
 
+  describe('getNextPageData', () => {
+    it('should call fetch with the correct parameters', () => {
+
+    });
+
+    it('should return results from all the fetch calls', () => {
+
+    });
+  });
+
   describe('getPeopleData', () => {
     it('should call fetch with the correct parameters', () => {
 
@@ -65,6 +75,42 @@ describe('App', () => {
     });
 
     it('should return an array of people objects', () => {
+
+    });
+  });
+
+  describe('getPlanetData', () => {
+
+  });
+
+  describe('getVehicleData', () => {
+
+  });
+
+  describe('getHomeworld', () => {
+    it('should call fetch with the correct parameters', () => {
+
+    });
+
+    it('should return an array with homeworld name and population', () => {
+
+    });
+
+    it('should console log an error if everything is not okay', () => {
+
+    });
+  });
+
+  describe('getSpecies', () => {
+    it('should call fetch with the correct parameters', () => {
+
+    });
+
+    it('should return a string with the species name', () => {
+
+    });
+
+    it('should console log an error if everything is not okay', () => {
 
     });
   });

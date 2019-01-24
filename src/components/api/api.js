@@ -3,7 +3,7 @@ const fetchData = async (url) => {
     const response = await fetch(url)
     return response.json();
   } catch (error) {
-    console.log(error);
+    throw Error(`Error fetching data: ${error.message}`);
   }
 }
 
