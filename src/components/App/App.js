@@ -5,6 +5,7 @@ import '../../main.scss';
 import ControlForm from '../ControlForm/ControlForm';
 import CardContainer from '../CardContainer/CardContainer';
 import Landing from '../Landing/Landing';
+import API from '../api/api';
 
 class App extends Component {
   constructor() {
@@ -20,42 +21,50 @@ class App extends Component {
     }
   }
 
-  getPeopleData = async (item) => {
-    if (this.state.people.length === 0) {
-      try {
-        const response = await fetch(`https://swapi.co/api/${item}`)
-        let results = await response.json();
-        const allPeople = await this.getNextPageData(results);
-        const unresolvedPromises = await allPeople.map(async person => {
-          const homeworld = await this.getHomeworld(person.homeworld);
-          const species = await this.getSpecies(person.species);
-          return {
-            name: person.name,
-            homeworld: homeworld[0],
-            population: homeworld[1],
-            species
-          }
-        });
-        const people = await Promise.all(unresolvedPromises);
-        this.setState({
-          people,
-          currentPage: item
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  getData = async (item) => {
+    if (this.state[item].length === 0) {
+      const results = await API.fetchData(`https://swapi.co/api/${item}`);
+      // const allData = await this.getNextPageData(results);
+      const unresolvedPromises = await this.getPeopleData(results.results);
+      const finalData = await Promise.all(unresolvedPromises);
+      this.setState({
+        [item]: finalData,
+        currentPage: item
+      });
+    } 
   }
 
   getNextPageData = async (prevResults) => {
     let allResults = prevResults.results;
     do {
-      const response = await fetch(prevResults.next);
-      let results = await response.json();
+      const results = await API.fetchData(prevResults.next);
       allResults = await allResults.concat(results.results);
       prevResults = results;
     } while (prevResults.next);
     return allResults
+  }
+
+  getPeopleData = (data) => {
+    return data.map(async person => {
+      const homeResult = await API.fetchData(person.homeworld);
+      const homeworld = [homeResult.name, homeResult.population];
+      const speciesResult = await API.fetchData(person.species);
+      const species = speciesResult.name;
+      return {
+        name: person.name,
+        homeworld: homeworld[0],
+        population: homeworld[1],
+        species
+      }
+    });
+  }
+
+  getPlanetData = (data) => {
+
+  }
+
+  getVehicleData = (data) => {
+    
   }
 
   getHomeworld = async (url) => {
@@ -108,7 +117,7 @@ class App extends Component {
       return (
         <div>
           <h1>SWAPI-BOX</h1>
-          <ControlForm getData={this.getPeopleData} favoritesCount={favorites.length}/>
+          <ControlForm getData={this.getData} favoritesCount={favorites.length}/>
           {
             currentPage === 'landing' ? 
             <Landing {...scrollText} /> : 
