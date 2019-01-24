@@ -20,10 +20,25 @@ class ControlForm extends Component {
       <div id='button-container'>
       {
         buttonLabels.map(label => {
-          return <button onClick={this.handleClick} key={label} id={label.toLowerCase()}>{label}</button>
+          return (
+            <button 
+              onClick={this.handleClick}
+              key={label}
+              id={label.toLowerCase()}
+              className= {
+                this.state.active === label.toLowerCase() ? 'active' : 'inactive'
+              }
+            >{label}</button>
+          )
         })
       }
-      <button>View {this.props.favoritesCount} Favorites</button>
+        <button 
+          onClick={this.handleClick}
+          id='favorites'
+          className={this.state.active === 'favorites' ? 'active' : 'inactive'}
+        >
+          View {this.props.favoritesCount} Favorites
+        </button>
       </div>
     );
   }
