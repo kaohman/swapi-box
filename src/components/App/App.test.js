@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { shallow } from 'enzyme';
+import API from '../api/api';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -44,7 +45,68 @@ describe('App', () => {
   });
 
   describe('getData', () => {
+    let wrapper;
+    let item;
+    let mockPeople;
+    let mockState;
 
+    beforeEach(() => {
+      item = 'people';
+      mockPeople = {results: [{ name: 'R2D2', homeworld: 'basement', population: '5000', species: 'droid' }, { name: 'Luke Skywalker', homeworld: 'Tatooine', population: '2000', species: 'human' }]};
+      API.fetchData = jest.fn().mockImplementation(() => {
+        return mockPeople
+      });
+      wrapper = shallow(<App />);
+      wrapper.setState({
+        currentPage: 'landing',
+        people: [],
+      })
+      wrapper.instance().getPeopleData = jest.fn().mockImplementation(() => {
+        return mockPeople.results
+      });
+    });
+
+    it('should call fetchData with the correct parameters', async () => {
+      // setup
+      const expected = 'https://swapi.co/api/people';
+
+      // execution 
+      await wrapper.instance().getData(item);
+
+      // expectation
+      expect(API.fetchData).toHaveBeenCalledWith(expected);
+    });
+
+    it('should be able to call getPeopleData with the correct parameters', async () => {
+      // setup
+      const expected = mockPeople.results;
+
+      // execution 
+      await wrapper.instance().getData(item);
+
+      // expectation
+      expect(wrapper.instance().getPeopleData).toHaveBeenCalledWith(expected);
+    });
+
+    // it('should be able to call getPlanetData with the correct parameters', () => {
+
+    // });
+
+    // it('should be able to call getVehicleData with the correct parameters', () => {
+
+    // });
+
+    it('should update state with new data', async () => {
+      // setup
+      const expected = mockPeople.results;
+
+      // execution 
+      await wrapper.instance().getData(item);
+
+      // expectation
+      expect(wrapper.state('people')).toEqual(expected);
+      expect(wrapper.state('currentPage')).toEqual('people');
+    });
   });
 
   describe('getNextPageData', () => {
@@ -79,13 +141,13 @@ describe('App', () => {
     });
   });
 
-  describe('getPlanetData', () => {
+  // describe('getPlanetData', () => {
 
-  });
+  // });
 
-  describe('getVehicleData', () => {
+  // describe('getVehicleData', () => {
 
-  });
+  // });
 
   describe('getHomeworld', () => {
     it('should call fetch with the correct parameters', () => {
