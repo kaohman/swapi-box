@@ -2,7 +2,7 @@
 
 exports[`CardContainer should match the snapshot with all data passed in 1`] = `
 <div
-  id="card-containers"
+  id="card-container"
 >
   <Card />
 </div>

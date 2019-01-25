@@ -7,7 +7,7 @@ describe('API', () => {
 
     beforeEach(() => {
       url = 'https://swapi.co/api/people';
-      mockPeople = [{}, {}];
+      mockPeople = [{ name: 'R2D2', homeworld: 'basement', population: '5000', species: 'droid' }, { name: 'Luke Skywalker', homeworld: 'Tatooine', population: '2000', species: 'human' }];
     });
 
     it('should call fetch with the correct parameters', () => {

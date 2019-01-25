@@ -63,6 +63,7 @@ class App extends Component {
       const homeworld = await this.getHomeworld(person.homeworld);
       const species = await this.getSpecies(person.species);
       return {
+        type: 'people',
         name: person.name,
         homeworld: homeworld[0],
         population: homeworld[1],
@@ -76,6 +77,7 @@ class App extends Component {
     const unresolvedPromises = data.map(async planet => {
       const residents = await this.getResidents(planet.residents);
       return {
+        type: 'planet',
         name: planet.name,
         terrain: planet.terrain,
         climate: planet.climate,
@@ -85,17 +87,10 @@ class App extends Component {
     return await Promise.all(unresolvedPromises);
   }
 
-  getResidents = async (urls) => {
-    const unresolvedPromises = urls.map(async url => {
-      const result = await API.fetchData(url);
-      return result.name
-    });
-    return await Promise.all(unresolvedPromises);
-  }
-
   getVehicleData = async (data) => {
     const unresolvedPromises = data.map(async vehicle => {
       return {
+        type: 'vehicle',
         name: vehicle.name,
         model: vehicle.model,
         class: vehicle.vehicle_class,
@@ -113,6 +108,14 @@ class App extends Component {
   getSpecies = async (url) => {
     const result = await API.fetchData(url);
     return result.name
+  }
+
+  getResidents = async (urls) => {
+    const unresolvedPromises = urls.map(async url => {
+      const result = await API.fetchData(url);
+      return result.name
+    });
+    return await Promise.all(unresolvedPromises);
   }
 
   getFavorites = () => {
@@ -149,7 +152,7 @@ class App extends Component {
           {
             currentPage === 'landing' ? 
             <Landing {...scrollText} /> : 
-            <CardContainer cards={this.state[currentPage]} currentPage={currentPage}/>
+            <CardContainer cards={this.state[currentPage]} />
           }
         </div>
       );

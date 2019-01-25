@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Planets from './Planets';
+import Card from './Card';
 import { shallow } from 'enzyme';
 
-describe('Planets', () => {
+describe('Card', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <Planets
-
+      <Card
+        data={}
       />
     );
   });
