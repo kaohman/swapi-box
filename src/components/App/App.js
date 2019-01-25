@@ -41,9 +41,11 @@ class App extends Component {
       }
       this.setState({
         [item]: finalData,
-        currentPage: item
       });
     } 
+    this.setState({
+      currentPage: item
+    });
   }
 
   getNextPageData = async (prevResults) => {
