@@ -91,8 +91,16 @@ class App extends Component {
     return await Promise.all(unresolvedPromises);
   }
 
-  getVehicleData = (data) => {
-    
+  getVehicleData = async (data) => {
+    const unresolvedPromises = data.map(async vehicle => {
+      return {
+        name: vehicle.name,
+        model: vehicle.model,
+        class: vehicle.vehicle_class,
+        passengers: vehicle.passengers
+      }
+    });
+    return await Promise.all(unresolvedPromises);
   }
 
   getHomeworld = async (url) => {

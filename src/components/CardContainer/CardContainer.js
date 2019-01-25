@@ -1,6 +1,7 @@
 import React from 'react';
 import People from '../People/People';
-import Planets from '../Planets/Planets'
+import Planets from '../Planets/Planets';
+import Vehicles from '../Vehicles/Vehicles';
 
 const CardContainer = ({ currentPage, cards }) => {
   let cardsToDisplay;
@@ -11,9 +12,9 @@ const CardContainer = ({ currentPage, cards }) => {
     case 'planets':
       cardsToDisplay = <Planets planets={cards} />
       break;
-    // case 'vehicles':
-    //   cardsToDisplay = <Vehicles vehicles={cards} />
-    //   break;
+    case 'vehicles':
+      cardsToDisplay = <Vehicles vehicles={cards} />
+      break;
     default:
       console.log('Error: card case not valid');
   }
