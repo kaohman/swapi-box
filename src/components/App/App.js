@@ -24,8 +24,21 @@ class App extends Component {
   getData = async (item) => {
     if (this.state[item].length === 0) {
       const results = await API.fetchData(`https://swapi.co/api/${item}`);
-      const allData = await this.getNextPageData(results);
-      const finalData = await this.getPeopleData(allData);
+      // const allData = await this.getNextPageData(results);
+      let finalData;
+      switch (item) {
+        case 'people':
+          finalData = await this.getPeopleData(results.results);
+          break;
+        case 'planets':
+          finalData = await this.getPlanetData(results.results);
+          break;
+        case 'vehicles':
+          finalData = await this.getVehicleData(results.results);
+          break;
+        default:
+          console.log('Error: case is not valid');
+      }
       this.setState({
         [item]: finalData,
         currentPage: item
@@ -57,8 +70,24 @@ class App extends Component {
     return await Promise.all(unresolvedPromises);
   }
 
-  getPlanetData = (data) => {
+  getPlanetData = async (data) => {
+    const unresolvedPromises = data.map(async planet => {
+      const residents = await this.getResidents(planet.residents);
+      return {
+        name: planet.name,
+        terrain: planet.terrain,
+        climate: planet.climate,
+        residents 
+      }
+    });
+    return await Promise.all(unresolvedPromises);
+  }
 
+  getResidents = async (urls) => {
+    return urls.map(async url => {
+      const result = await API.fetchData(url);
+      return result.name
+    });
   }
 
   getVehicleData = (data) => {
