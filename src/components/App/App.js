@@ -24,9 +24,8 @@ class App extends Component {
   getData = async (item) => {
     if (this.state[item].length === 0) {
       const results = await API.fetchData(`https://swapi.co/api/${item}`);
-      // const allData = await this.getNextPageData(results);
-      const unresolvedPromises = await this.getPeopleData(results.results);
-      const finalData = await Promise.all(unresolvedPromises);
+      const allData = await this.getNextPageData(results);
+      const finalData = await this.getPeopleData(allData);
       this.setState({
         [item]: finalData,
         currentPage: item
@@ -44,12 +43,10 @@ class App extends Component {
     return allResults
   }
 
-  getPeopleData = (data) => {
-    return data.map(async person => {
-      const homeResult = await API.fetchData(person.homeworld);
-      const homeworld = [homeResult.name, homeResult.population];
-      const speciesResult = await API.fetchData(person.species);
-      const species = speciesResult.name;
+  getPeopleData = async (data) => {
+    const unresolvedPromises = data.map(async person => {
+      const homeworld = await this.getHomeworld(person.homeworld);
+      const species = await this.getSpecies(person.species);
       return {
         name: person.name,
         homeworld: homeworld[0],
@@ -57,6 +54,7 @@ class App extends Component {
         species
       }
     });
+    return await Promise.all(unresolvedPromises);
   }
 
   getPlanetData = (data) => {
@@ -68,23 +66,13 @@ class App extends Component {
   }
 
   getHomeworld = async (url) => {
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-      return [result.name, result.population]
-    } catch (error) {
-      console.log(error);
-    }
+    const result = await API.fetchData(url);
+    return [result.name, result.population]
   }
 
   getSpecies = async (url) => {
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-      return result.name
-    } catch (error) {
-      console.log(error);
-    }
+    const result = await API.fetchData(url);
+    return result.name
   }
 
   getFavorites = () => {
