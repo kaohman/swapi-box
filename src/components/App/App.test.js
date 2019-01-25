@@ -219,13 +219,13 @@ describe('App', () => {
     });
   });
 
-  // describe('getPlanetData', () => {
+  describe('getPlanetData', () => {
 
-  // });
+  });
 
-  // describe('getVehicleData', () => {
+  describe('getVehicleData', () => {
 
-  // });
+  });
 
   describe('getHomeworld', () => {
     it('should call fetch with the correct parameters', () => {
@@ -247,9 +247,9 @@ describe('App', () => {
     });
   });
 
-  // describe('getResidents', () => {
+  describe('getResidents', () => {
 
-  // });
+  });
 
   // describe('getFavorites', () => {
 
