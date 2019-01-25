@@ -193,25 +193,25 @@ describe('App', () => {
 
     it('should call getHomeworld with the correct parameters', async () => {
       // setup
-      const expected = mockData.homeworld;
+      const expected = 'https://swapi.co/api/planets/1/';
       // execution 
-      await wrapper.instance().getHomeworld(mockData.homeworld);
+      await wrapper.instance().getPeopleData(mockData);
       // expectation
       expect(wrapper.instance().getHomeworld).toHaveBeenCalledWith(expected);
     });
 
     it('should call getSpecies with the correct parameters', async () => {
       // setup
-      const expected = mockData.species;
+      const expected = 'https://swapi.co/api/species/1/';
       // execution 
-      await wrapper.instance().getSpecies(mockData.species);
+      await wrapper.instance().getPeopleData(mockData);
       // expectation
       expect(wrapper.instance().getSpecies).toHaveBeenCalledWith(expected);
     });
 
     it('should return an array of people objects', async () => {
       // setup
-      const expected = [{ type: 'people', name: 'Luke Skywalker', homeworld: 'Tatooine', population: '200000', species: 'Human' }];
+      const expected = [{ homeworld: 'Tatooine', name: 'Luke Skywalker', population: '200000', species: 'Human', type: 'people' }];
       // execution
       const result = await wrapper.instance().getPeopleData(mockData);
       // expectation
@@ -220,11 +220,67 @@ describe('App', () => {
   });
 
   describe('getPlanetData', () => {
+    let wrapper;
+    let mockData;
+    let mockResidents;
 
+    beforeEach(() => {
+      mockData = [{
+        type: 'planets', name: 'Alderaan', climate: 'temperate', residents: ['https://swapi.co/api/people/5/', 'https://swapi.co/api/people/68/', 'https://swapi.co/api/people/81/'], terrain: 'grasslands, mountains' }];
+      mockResidents = ['Leia Organa', 'Bail Prestor Organa', 'Raymus Antilles'];
+      wrapper = shallow(<App />);
+      wrapper.instance().getResidents = jest.fn().mockImplementation(() => {
+        return mockResidents
+      });
+    });
+
+    it('should call getResidents with the correct parameters', async () => {
+      // setup
+      const expected = ['https://swapi.co/api/people/5/', 'https://swapi.co/api/people/68/', 'https://swapi.co/api/people/81/'];
+      // execution 
+      await wrapper.instance().getPlanetData(mockData);
+      // expectation
+      expect(wrapper.instance().getResidents).toHaveBeenCalledWith(expected);
+    });
+
+    it('should return an array of planet objects', async () => {
+      // setup
+      const expected = [{ climate: 'temperate', name: 'Alderaan', residents: ['Leia Organa', 'Bail Prestor Organa', 'Raymus Antilles'], terrain: 'grasslands, mountains', type: 'planet' }];
+      // execution
+      const result = await wrapper.instance().getPlanetData(mockData);
+      // expectation
+      expect(result).toEqual(expected);
+    });
   });
 
   describe('getVehicleData', () => {
+    let wrapper;
+    let mockData;
 
+    beforeEach(() => {
+      mockData = [{
+        name: 'Sand Crawler',
+        model: 'Digger Crawler',
+        passengers: '30',
+        vehicle_class: 'wheeled',
+      }];
+      wrapper = shallow(<App />);
+    });
+
+    it('should return an array of vehicle objects', async () => {
+      // setup
+      const expected = [{
+        name: 'Sand Crawler',
+        model: 'Digger Crawler',
+        passengers: '30',
+        class: 'wheeled',
+        type: 'vehicle'
+      }];
+      // execution
+      const result = await wrapper.instance().getVehicleData(mockData);
+      // expectation
+      expect(result).toEqual(expected);
+    });
   });
 
   describe('getHomeworld', () => {
@@ -248,7 +304,13 @@ describe('App', () => {
   });
 
   describe('getResidents', () => {
+    it('should call fetch with the correct parameters', () => {
 
+    });
+
+    it('should return an array with all residents', async () => {
+
+    });
   });
 
   // describe('getFavorites', () => {

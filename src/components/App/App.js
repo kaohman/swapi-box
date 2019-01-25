@@ -148,7 +148,7 @@ class App extends Component {
       return (
         <div>
           <h1>SWAPI-BOX</h1>
-          <ControlForm getData={this.getData} favoritesCount={favorites.length}/>
+          <ControlForm activeButton={currentPage} getData={this.getData} favoritesCount={favorites.length}/>
           {
             currentPage === 'landing' ? 
             <Landing {...scrollText} /> : 
