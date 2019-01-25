@@ -84,10 +84,11 @@ class App extends Component {
   }
 
   getResidents = async (urls) => {
-    return urls.map(async url => {
+    const unresolvedPromises = urls.map(async url => {
       const result = await API.fetchData(url);
       return result.name
     });
+    return await Promise.all(unresolvedPromises);
   }
 
   getVehicleData = (data) => {
@@ -129,7 +130,7 @@ class App extends Component {
   }
 
   render() {
-    const { scrollText, currentPage, loaded, favorites, people } = this.state;
+    const { scrollText, currentPage, loaded, favorites } = this.state;
     if (loaded) {
       return (
         <div>
@@ -138,7 +139,7 @@ class App extends Component {
           {
             currentPage === 'landing' ? 
             <Landing {...scrollText} /> : 
-            <CardContainer people={people}/>
+            <CardContainer cards={this.state[currentPage]} currentPage={currentPage}/>
           }
         </div>
       );
