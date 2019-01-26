@@ -151,8 +151,7 @@ class App extends Component {
         scrollText: { 
           text: opening_crawl,
           title: title,
-          date: release_date,
-          favorites: []
+          date: release_date
         },
         currentPage: 'landing'
       });

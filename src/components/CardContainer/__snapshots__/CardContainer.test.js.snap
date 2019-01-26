@@ -4,6 +4,25 @@ exports[`CardContainer should match the snapshot with all data passed in 1`] = `
 <div
   id="card-container"
 >
-  <Card />
+  <Card
+    card={Object {}}
+    favorites={
+      Array [
+        "1",
+        "2",
+      ]
+    }
+    toggleFavorite={[MockFunction]}
+  />
+  <Card
+    card={Object {}}
+    favorites={
+      Array [
+        "1",
+        "2",
+      ]
+    }
+    toggleFavorite={[MockFunction]}
+  />
 </div>
 `;
