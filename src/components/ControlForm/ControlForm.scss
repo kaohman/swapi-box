@@ -2,25 +2,31 @@
   width: 80%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 40px;
   margin: 10px auto;
 }
 
 button {
+  box-shadow: 2px 2px 10px black;
   font-size: 20px;
+  font-weight: 800;
   font-family: $content-font;
   text-transform: uppercase;
   border-radius: 5px;
-  background-color: lightgrey;
+  background: radial-gradient(#fcd800, #f7b600);
   padding: 10px;
   border: none;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
-    background-color: $header-font-color;
+    background: radial-gradient(gold, aqua);
   }
 
 }
 
 .active {
-  background-color: purple;
+  background: radial-gradient(lightblue, aqua);
 }

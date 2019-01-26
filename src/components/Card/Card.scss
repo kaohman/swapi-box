@@ -12,6 +12,8 @@ h3 {
 
 
 .card {
+  animation: bounceAppear 450ms linear 0s 1 normal; 
+  animation-fill-mode: both;
   color: white;
   background-color: #0b1013;
   box-shadow: 0 0 10px darkgrey;
@@ -23,10 +25,24 @@ h3 {
 }
 
 .favorite-icon {
+  background: url('./images/star-yellow.png');
+  background-size: cover;
   display: block;
   margin: 0 0 0 auto;
   width: 30px;
   height: 30px;
+
+  &:hover {
+    background: url('./images/star-blue.png');
+    background-size: cover;
+    animation: wiggle .8s linear 0s infinite normal; 
+    animation-fill-mode: forwards;
+  }
+}
+
+.active-favorite {
+  background: url('./images/star-blue.png');
+  background-size: cover;
 }
 
 .card-icon {
@@ -38,4 +54,35 @@ h3 {
 .card-text-div {
   height: 240px;
   overflow: scroll;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(7deg);
+  }
+  70% {
+    transform: rotate(-7deg);
+  }
+}
+
+@keyframes bounceAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

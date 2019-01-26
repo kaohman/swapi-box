@@ -56,7 +56,7 @@ const Card = ({ data }) => {
     cards.map((card, i) => {
       return (
         <div className='card' key={data[i].name}>
-          <img className='favorite-icon' src={require('../../images/star.png')} alt='favorite icon'/>
+          <button className='favorite-icon'></button>
           {card}
         </div>
       )
