@@ -1,3 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card should match the snapshot with all data passed in 1`] = `undefined`;
+exports[`Card should match the snapshot with all data passed in 1`] = `
+<div
+  className="card"
+>
+  <button
+    className="favorite-icon"
+    onClick={[Function]}
+  />
+  <div
+    className="card-text-div"
+  >
+    <h3 />
+    <p>
+      Terrain: 
+      rocky
+    </p>
+    <p>
+      Climate: 
+      temperate
+    </p>
+    <p>
+      Residents: 
+      Karin, Austin, Aria
+    </p>
+  </div>
+</div>
+`;
