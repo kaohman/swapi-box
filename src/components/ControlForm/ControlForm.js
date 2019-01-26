@@ -20,7 +20,7 @@ const ControlForm = ({ getData, activeButton, favoritesCount }) => {
       })
     }
       <button 
-
+        onClick={(event) => getData(event.target.id)}
         id='favorites'
         className={activeButton === 'favorites' ? 'active' : 'inactive'}
       >

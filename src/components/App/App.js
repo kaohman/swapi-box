@@ -65,6 +65,7 @@ class App extends Component {
       const homeworld = await this.getHomeworld(person.homeworld);
       const species = typeof person.species === 'string' ? await this.getSpecies(person.species) : 'unknown';
       return {
+        id: person.url,
         type: 'people',
         name: person.name,
         homeworld: homeworld[0],
@@ -79,6 +80,7 @@ class App extends Component {
     const unresolvedPromises = data.map(async planet => {
       const residents = planet.residents.length > 0 ? await this.getResidents(planet.residents) : 'none';
       return {
+        id: planet.url,
         type: 'planet',
         name: planet.name,
         terrain: planet.terrain,
@@ -92,6 +94,7 @@ class App extends Component {
   getVehicleData = async (data) => {
     const unresolvedPromises = data.map(async vehicle => {
       return {
+        id: vehicle.url,
         type: 'vehicle',
         name: vehicle.name,
         model: vehicle.model,
@@ -120,7 +123,20 @@ class App extends Component {
     return await Promise.all(unresolvedPromises);
   }
 
-  getFavorites = () => {
+  toggleFavorite = (id) => {
+    const { favorites } = this.state;
+    let newFavorites;
+    if (favorites.includes(id)) {
+      newFavorites = favorites.filter(favorite => favorite !== id);
+    } else {
+      newFavorites = [ ...favorites, id ];
+    }
+    this.setState({
+      favorites: newFavorites
+    });
+  }
+
+  showFavorites = () => {
 
   }
 
@@ -156,13 +172,23 @@ class App extends Component {
           <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
     } else {
-      contentToDisplay = <CardContainer cards={this.state[currentPage]} />;
+      contentToDisplay = 
+      <CardContainer 
+        cards={this.state[currentPage]} 
+        favorites={favorites}
+        toggleFavorite={this.toggleFavorite}
+      />;
     }
     return (
       <div>
         <h1>SWAPI BOX</h1>
         <h2>a star wars api app - select a category</h2>
-        <ControlForm activeButton={currentPage} getData={this.getData} favoritesCount={favorites.length}/>
+        <ControlForm 
+          activeButton={currentPage} 
+          getData={this.getData} 
+          favoritesCount={favorites.length}
+          showFavorites={this.showFavorites}
+        />
         {contentToDisplay}
       </div>
     );

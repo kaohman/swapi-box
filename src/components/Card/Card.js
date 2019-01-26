@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({ data }) => {
+const Card = ({ data, favorites, toggleFavorite }) => {
   const getResidentsList = (residents) => {
     if (typeof residents === 'string') {
       return residents
@@ -55,8 +55,14 @@ const Card = ({ data }) => {
   return (
     cards.map((card, i) => {
       return (
-        <div className='card' key={data[i].name}>
-          <button className='favorite-icon'></button>
+        <div className='card' key={data[i].id} id={data[i].id}>
+          <button 
+            onClick={(event) => toggleFavorite(event.target.parentElement.id)}
+            className= 
+            {
+              favorites.includes(data[i].id) ? 'favorite-icon favorite' : 'favorite-icon'
+            }
+          ></button>
           {card}
         </div>
       )
