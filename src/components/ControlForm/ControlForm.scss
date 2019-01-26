@@ -7,13 +7,16 @@
 }
 
 button {
+  font-size: 20px;
+  font-family: $content-font;
+  text-transform: uppercase;
   border-radius: 5px;
   background-color: lightgrey;
   padding: 10px;
   border: none;
 
   &:hover {
-    background-color: aqua;
+    background-color: $header-font-color;
   }
 
 }

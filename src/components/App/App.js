@@ -147,7 +147,8 @@ class App extends Component {
     if (loaded) {
       return (
         <div>
-          <h1>SWAPI-BOX</h1>
+          <h1>SWAPI BOX</h1>
+          <h2>a star wars api app - select a category</h2>
           <ControlForm activeButton={currentPage} getData={this.getData} favoritesCount={favorites.length}/>
           {
             currentPage === 'landing' ? 

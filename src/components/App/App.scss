@@ -6,12 +6,25 @@
 }
 
 body {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./images/stars-background2.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
   margin: 0;
   background-color: black;
 }
 
 h1 {
+  margin-bottom: 0;
+  font-family: $star-wars-font;
   font-size: 40px;
-  color: white;
+  color: $header-font-color;
+  text-align: center;
+}
+
+h2 {
+  font-family: $content-font;
+  color: $header-font-color;
   text-align: center;
 }

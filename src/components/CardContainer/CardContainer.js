@@ -11,11 +11,11 @@ const CardContainer = (props) => {
 }
 
 CardContainer.propTypes = {
-  cards: PropTypes.object
+  cards: PropTypes.array
 }
 
 CardContainer.defaultProps = {
-  cards: {}
+  cards: []
 }
 
 export default CardContainer;

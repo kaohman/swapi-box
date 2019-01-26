@@ -1,8 +1,20 @@
 #landing-container {
   @include main-content-style();
-  text-align: center;
 }
 
-h4 {
-  font-size: 30px;
+// #scroll-text-container {
+ 
+// }
+
+.landing-text {
+  text-align: justify;
+  font-size: 40px;
+  font-family: $content-font;
+  color: $header-font-color;
 }
+
+.right-justify {
+  text-align: right;
+}
+
+

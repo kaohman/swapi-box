@@ -2,12 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = ({ data }) => {
+  const getResidentsList = (residents) => {
+    if (typeof residents === 'string') {
+      return residents
+    } else {
+      return residents.reduce((acc, resident, i) => {
+        acc = (i === residents.length - 1) ? acc + resident : acc + resident + ', ';
+        return acc
+      }, '');
+    }
+  }
+  
   const cards = data.map(card => {
     switch (card.type) {
       case 'people':
         const { homeworld, species, population } = card;
         return (
-          <div>
+          <div className='card-text-div'>
             <h3>{card.name}</h3>
             <p>Home World: {homeworld}</p>
             <p>Species: {species}</p>
@@ -19,7 +30,7 @@ const Card = ({ data }) => {
         const { terrain, climate, residents } = card;
         let residentsList = getResidentsList(residents);
         return (
-          <div>
+          <div className='card-text-div'>
             <h3>{card.name}</h3>
             <p>Terrain: {terrain}</p>
             <p>Climate: {climate}</p>
@@ -29,7 +40,7 @@ const Card = ({ data }) => {
       case 'vehicle':
         const { model, vehicle_class, passengers } = card;
         return (
-          <div>
+          <div className='card-text-div'>
             <h3>{card.name}</h3>
             <p>Model: {model}</p>
             <p>Class: {vehicle_class}</p>
@@ -41,22 +52,11 @@ const Card = ({ data }) => {
     }
   });
 
-  const getResidentsList = (residents) => {
-    if (typeof residents === 'string') {
-      return residents
-    } else {
-      return residents.reduce((acc, resident, i) => {
-        acc = (i === residents.length - 1) ? acc + resident : acc + resident + ', ';
-        return acc
-      }, '');
-    }
-  }
-
   return (
     cards.map((card, i) => {
       return (
         <div className='card' key={data[i].name}>
-          <img className='favorite-icon' alt='favorite icon'/>
+          <img className='favorite-icon' src={require('../../images/star.png')} alt='favorite icon'/>
           {card}
         </div>
       )
@@ -65,11 +65,11 @@ const Card = ({ data }) => {
 }
 
 Card.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.array
 }
 
 Card.defaultProps = {
-  data: {}
+  data: []
 }
 
 export default Card;
