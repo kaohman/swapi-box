@@ -24,17 +24,17 @@ class App extends Component {
   getData = async (item) => {
     if (this.state[item].length === 0) {
       const results = await API.fetchData(`https://swapi.co/api/${item}`);
-      // const allData = await this.getNextPageData(results);
+      const allData = await this.getNextPageData(results);
       let finalData;
       switch (item) {
         case 'people':
-          finalData = await this.getPeopleData(results.results);
+          finalData = await this.getPeopleData(allData);
           break;
         case 'planets':
-          finalData = await this.getPlanetData(results.results);
+          finalData = await this.getPlanetData(allData);
           break;
         case 'vehicles':
-          finalData = await this.getVehicleData(results.results);
+          finalData = await this.getVehicleData(allData);
           break;
         default:
           console.log('Error: case is not valid');
@@ -61,7 +61,7 @@ class App extends Component {
   getPeopleData = async (data) => {
     const unresolvedPromises = data.map(async person => {
       const homeworld = await this.getHomeworld(person.homeworld);
-      const species = await this.getSpecies(person.species);
+      const species = typeof person.species === 'string' ? await this.getSpecies(person.species) : 'unknown';
       return {
         type: 'people',
         name: person.name,
@@ -75,7 +75,7 @@ class App extends Component {
 
   getPlanetData = async (data) => {
     const unresolvedPromises = data.map(async planet => {
-      const residents = await this.getResidents(planet.residents);
+      const residents = planet.residents.length > 0 ? await this.getResidents(planet.residents) : 'none';
       return {
         type: 'planet',
         name: planet.name,

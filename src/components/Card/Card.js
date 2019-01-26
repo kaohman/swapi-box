@@ -10,24 +10,27 @@ const Card = ({ data }) => {
             <h3>{card.name}</h3>
             <p>Home World: {homeworld}</p>
             <p>Species: {species}</p>
-            <p>Population of Home World: {parseInt(population).toLocaleString()}</p>
+            <p>Population of Home World: { parseInt(population) ? parseInt(population).toLocaleString() : population }
+            </p>
           </div>
         )
       case 'planet':
         const { terrain, climate, residents } = card;
+        let residentsList = '';
+        if (typeof residents === 'string') {
+          residentsList = residents
+        } else {
+          residentsList = residents.reduce((acc, resident, i) => {
+            acc = (i === residents.length - 1) ? acc + resident : acc + resident + ', ';
+            return acc
+          }, '');
+        }
         return (
           <div>
             <h3>{card.name}</h3>
             <p>Terrain: {terrain}</p>
             <p>Climate: {climate}</p>
-            <p>Residents:
-            {
-                residents.reduce((acc, resident) => {
-                  acc += resident + ', '
-                  return acc
-                }, '')
-              }
-            </p>
+            <p>Residents: {residentsList}</p>
           </div>
         )
       case 'vehicle':
