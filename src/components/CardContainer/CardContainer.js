@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Card/Card';
+import PropTypes from 'prop-types';
 
 const CardContainer = (props) => {
   return (
@@ -7,6 +8,14 @@ const CardContainer = (props) => {
       <Card data={props.cards} />
     </div>
   );
+}
+
+CardContainer.propTypes = {
+  cards: PropTypes.object
+}
+
+CardContainer.defaultProps = {
+  cards: {}
 }
 
 export default CardContainer;

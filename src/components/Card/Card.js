@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({ data }) => {
   const cards = data.map(card => {
@@ -61,6 +62,14 @@ const Card = ({ data }) => {
       )
     })
   )
+}
+
+Card.propTypes = {
+  data: PropTypes.object
+}
+
+Card.defaultProps = {
+  data: {}
 }
 
 export default Card;
