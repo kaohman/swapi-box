@@ -93,7 +93,7 @@ class App extends Component {
         type: 'vehicle',
         name: vehicle.name,
         model: vehicle.model,
-        class: vehicle.vehicle_class,
+        vehicle_class: vehicle.vehicle_class,
         passengers: vehicle.passengers
       }
     });

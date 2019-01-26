@@ -16,15 +16,7 @@ const Card = ({ data }) => {
         )
       case 'planet':
         const { terrain, climate, residents } = card;
-        let residentsList = '';
-        if (typeof residents === 'string') {
-          residentsList = residents
-        } else {
-          residentsList = residents.reduce((acc, resident, i) => {
-            acc = (i === residents.length - 1) ? acc + resident : acc + resident + ', ';
-            return acc
-          }, '');
-        }
+        let residentsList = getResidentsList(residents);
         return (
           <div>
             <h3>{card.name}</h3>
@@ -47,6 +39,17 @@ const Card = ({ data }) => {
         return('Error: card case not valid');
     }
   });
+
+  const getResidentsList = (residents) => {
+    if (typeof residents === 'string') {
+      return residents
+    } else {
+      return residents.reduce((acc, resident, i) => {
+        acc = (i === residents.length - 1) ? acc + resident : acc + resident + ', ';
+        return acc
+      }, '');
+    }
+  }
 
   return (
     cards.map((card, i) => {
