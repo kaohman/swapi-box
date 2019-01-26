@@ -13,11 +13,18 @@ const CardContainer = ({cards, favorites, toggleFavorite, currentPage}) => {
   } else {
     return (
       <div id='card-container'>
-        <Card 
-          data={cards} 
-          toggleFavorite={toggleFavorite} 
-          favorites={favorites}
-        />
+        {
+          cards.map(card => {
+            return(
+              <Card
+                card={card}
+                toggleFavorite={toggleFavorite}
+                favorites={favorites}
+                key={card.id}
+              />
+            )
+          })
+        }
       </div>
     )
   }

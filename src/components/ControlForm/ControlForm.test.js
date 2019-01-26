@@ -5,11 +5,24 @@ import { shallow } from 'enzyme';
 
 describe('ControlForm', () => {
   let wrapper;
+  let mockGetData;
+  let mockShowFavorites;
+  let mockCurrentPage;
+  let mockFavoritesCount;
+  let mockEvent;
 
   beforeEach(() => {
+    mockGetData = jest.fn();
+    mockShowFavorites = jest.fn();
+    mockCurrentPage = 'people';
+    mockFavoritesCount = 0;
+    mockEvent = { target: { id: '' } };
     wrapper = shallow(
       <ControlForm
-
+        activeButton={mockCurrentPage}
+        getData={mockGetData}
+        favoritesCount={mockFavoritesCount}
+        showFavorites={mockShowFavorites}
       />
     );
   });
@@ -18,8 +31,15 @@ describe('ControlForm', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have a default state', () => {
-    
+  it('should call getData on button click', () => {// execution
+    wrapper.find('#people').simulate('click', mockEvent);
+    // expectation
+    expect(mockGetData).toHaveBeenCalled();
   });
-  
+
+  it('should call showFavorites on button click', () => {
+    wrapper.find('#favorites').simulate('click', mockEvent);
+    // expectation
+    expect(mockShowFavorites).toHaveBeenCalled();
+  });
 });

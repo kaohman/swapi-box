@@ -1,3 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ControlForm should match the snapshot with all data passed in 1`] = `undefined`;
+exports[`ControlForm should match the snapshot with all data passed in 1`] = `
+<div
+  id="button-container"
+>
+  <button
+    className="active"
+    id="people"
+    key="People"
+    onClick={[Function]}
+  >
+    People
+  </button>
+  <button
+    className="inactive"
+    id="planets"
+    key="Planets"
+    onClick={[Function]}
+  >
+    Planets
+  </button>
+  <button
+    className="inactive"
+    id="vehicles"
+    key="Vehicles"
+    onClick={[Function]}
+  >
+    Vehicles
+  </button>
+  <button
+    className="inactive"
+    id="favorites"
+    onClick={[Function]}
+  >
+    View 
+    0
+     Favorites
+  </button>
+</div>
+`;

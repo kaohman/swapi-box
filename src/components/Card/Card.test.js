@@ -9,7 +9,9 @@ describe('Card', () => {
   beforeEach(() => {
     wrapper = shallow(
       <Card
-        data={}
+        data={cards}
+        toggleFavorite={toggleFavorite}
+        favorites={favorites}
       />
     );
   });

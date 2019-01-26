@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should match the snapshot with all data passed in 1`] = `
+<div
+  className="no-cards-container"
+>
+  <img
+    alt="darth vader"
+    className="star-wars-images"
+    src="darth-vader.png"
+  />
+  <h3
+    className="no-cards-text"
+  >
+    Loading data... I find your lack of faith disturbing.
+  </h3>
+  <div
+    className="lds-roller"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;

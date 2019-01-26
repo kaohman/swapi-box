@@ -9,7 +9,10 @@ describe('CardContainer', () => {
   beforeEach(() => {
     wrapper = shallow(
       <CardContainer
-
+        cards={cardsToDisplay}
+        favorites={favorites}
+        toggleFavorite={this.toggleFavorite}
+        currentPage={currentPage}
       />
     );
   });

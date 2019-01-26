@@ -15,8 +15,4 @@ describe('Loading', () => {
   it('should match the snapshot with all data passed in', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('should receive the text, title, and date for a movie given as props from app', () => {
-    // expect(wrapper.props()).toEqual('this is sample text');
-  });
 });
