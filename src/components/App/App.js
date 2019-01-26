@@ -5,6 +5,7 @@ import '../../main.scss';
 import ControlForm from '../ControlForm/ControlForm';
 import CardContainer from '../CardContainer/CardContainer';
 import Landing from '../Landing/Landing';
+import Loading from '../Loading/Loading';
 import API from '../api/api';
 
 class App extends Component {
@@ -167,17 +168,14 @@ class App extends Component {
     if (currentPage === 'landing') {
       contentToDisplay = <Landing {...scrollText} />;
     } else if (currentPage === 'loading') {
-      contentToDisplay = 
-        <div>
-          <h3 id='loading-text'>Loading data... I find your lack of faith disturbing</h3>
-          <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        </div>
+      contentToDisplay = <Loading />
     } else {
       contentToDisplay = 
       <CardContainer 
         cards={cardsToDisplay} 
         favorites={favorites}
         toggleFavorite={this.toggleFavorite}
+        currentPage={currentPage}
       />;
     }
     return (
