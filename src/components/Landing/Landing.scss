@@ -1,20 +1,38 @@
 #landing-container {
-  @include main-content-style();
+  position: absolute;
+  left: 210px;
+  top: 150px;
+  margin: 0 auto;
+  height: 500px;
+  overflow: hidden;
+  transform-origin: 50% 70%;
+  transform: perspective(400px) rotateX(20deg);
+  width: 70%;
 }
 
-// #scroll-text-container {
- 
-// }
+#scroll-text-container {
+  animation: scroll 120s linear infinite;
+  position: absolute;
+}
 
 .landing-text {
   text-align: justify;
-  font-size: 40px;
+  font-size: 50px;
   font-family: $content-font;
   color: $header-font-color;
 }
 
 .right-justify {
   text-align: right;
+}
+
+@keyframes scroll {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -500%;
+  }
 }
 
 

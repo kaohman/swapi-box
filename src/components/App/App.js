@@ -153,7 +153,7 @@ class App extends Component {
       contentToDisplay = 
         <div>
           <h3 id='loading-text'>Loading data... I find your lack of faith disturbing</h3>
-          <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
     } else {
       contentToDisplay = <CardContainer cards={this.state[currentPage]} />;
