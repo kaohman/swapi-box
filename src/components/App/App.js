@@ -11,8 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentPage: 'landing',
-      loaded: false,
+      currentPage: 'loading',
       scrollText: {},
       favorites: [],
       people: [],
@@ -23,6 +22,9 @@ class App extends Component {
 
   getData = async (item) => {
     if (this.state[item].length === 0) {
+      this.setState({
+        currentPage: 'loading'
+      });
       const results = await API.fetchData(`https://swapi.co/api/${item}`);
       const allData = await this.getNextPageData(results);
       let finalData;
@@ -135,7 +137,7 @@ class App extends Component {
           date: release_date,
           favorites: []
         },
-        loaded: true
+        currentPage: 'landing'
       });
     } catch(error) {
       console.log(error)
@@ -143,25 +145,27 @@ class App extends Component {
   }
 
   render() {
-    const { scrollText, currentPage, loaded, favorites } = this.state;
-    if (loaded) {
-      return (
+    const { scrollText, currentPage, favorites } = this.state;
+    let contentToDisplay;
+    if (currentPage === 'landing') {
+      contentToDisplay = <Landing {...scrollText} />;
+    } else if (currentPage === 'loading') {
+      contentToDisplay = 
         <div>
-          <h1>SWAPI BOX</h1>
-          <h2>a star wars api app - select a category</h2>
-          <ControlForm activeButton={currentPage} getData={this.getData} favoritesCount={favorites.length}/>
-          {
-            currentPage === 'landing' ? 
-            <Landing {...scrollText} /> : 
-            <CardContainer cards={this.state[currentPage]} />
-          }
+          <h3 id='loading-text'>Loading data... I find your lack of faith disturbing</h3>
+          <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
-      );
     } else {
-      return (
-        <h1>LOADING...</h1>
-      );
+      contentToDisplay = <CardContainer cards={this.state[currentPage]} />;
     }
+    return (
+      <div>
+        <h1>SWAPI BOX</h1>
+        <h2>a star wars api app - select a category</h2>
+        <ControlForm activeButton={currentPage} getData={this.getData} favoritesCount={favorites.length}/>
+        {contentToDisplay}
+      </div>
+    );
   }
 }
 
