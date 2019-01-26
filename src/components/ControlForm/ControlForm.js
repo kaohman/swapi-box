@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ControlForm = ({ getData, activeButton, favoritesCount }) => {
+const ControlForm = ({ getData, activeButton, favoritesCount, showFavorites }) => {
   const buttonLabels = ['People', 'Planets', 'Vehicles'];
   return (
     <div id='button-container'>
@@ -20,8 +20,8 @@ const ControlForm = ({ getData, activeButton, favoritesCount }) => {
       })
     }
       <button 
-        onClick={(event) => getData(event.target.id)}
-        id='favorites'
+        onClick={(event) => showFavorites(event.target.id)}
+      id='favorites'
         className={activeButton === 'favorites' ? 'active' : 'inactive'}
       >
         View {favoritesCount} Favorites

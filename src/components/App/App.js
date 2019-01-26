@@ -12,16 +12,14 @@ class App extends Component {
     super();
     this.state = {
       currentPage: 'loading',
+      allCards: [],
       scrollText: {},
       favorites: [],
-      people: [],
-      planets: [],
-      vehicles: []
     }
   }
 
   getData = async (item) => {
-    if (this.state[item].length === 0) {
+    if (this.state.allCards.findIndex(card => card.type === item) === -1) {
       this.setState({
         currentPage: 'loading'
       });
@@ -42,7 +40,7 @@ class App extends Component {
           console.log('Error: case is not valid');
       }
       this.setState({
-        [item]: finalData,
+        allCards: [...this.state.allCards, ...finalData]
       });
     } 
     this.setState({
@@ -81,7 +79,7 @@ class App extends Component {
       const residents = planet.residents.length > 0 ? await this.getResidents(planet.residents) : 'none';
       return {
         id: planet.url,
-        type: 'planet',
+        type: 'planets',
         name: planet.name,
         terrain: planet.terrain,
         climate: planet.climate,
@@ -95,7 +93,7 @@ class App extends Component {
     const unresolvedPromises = data.map(async vehicle => {
       return {
         id: vehicle.url,
-        type: 'vehicle',
+        type: 'vehicles',
         name: vehicle.name,
         model: vehicle.model,
         vehicle_class: vehicle.vehicle_class,
@@ -137,7 +135,9 @@ class App extends Component {
   }
 
   showFavorites = () => {
-
+    this.setState({
+      currentPage: 'favorites'
+    });
   }
 
   componentDidMount = async () => {
@@ -161,7 +161,8 @@ class App extends Component {
   }
 
   render() {
-    const { scrollText, currentPage, favorites } = this.state;
+    const { scrollText, currentPage, favorites, allCards } = this.state;
+    const cardsToDisplay = currentPage === 'favorites' ? allCards.filter(card => favorites.includes(card.id)) : allCards.filter(card => card.type === currentPage);
     let contentToDisplay;
     if (currentPage === 'landing') {
       contentToDisplay = <Landing {...scrollText} />;
@@ -174,7 +175,7 @@ class App extends Component {
     } else {
       contentToDisplay = 
       <CardContainer 
-        cards={this.state[currentPage]} 
+        cards={cardsToDisplay} 
         favorites={favorites}
         toggleFavorite={this.toggleFavorite}
       />;

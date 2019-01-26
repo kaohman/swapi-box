@@ -26,7 +26,7 @@ const Card = ({ data, favorites, toggleFavorite }) => {
             </p>
           </div>
         )
-      case 'planet':
+      case 'planets':
         const { terrain, climate, residents } = card;
         let residentsList = getResidentsList(residents);
         return (
@@ -37,7 +37,7 @@ const Card = ({ data, favorites, toggleFavorite }) => {
             <p>Residents: {residentsList}</p>
           </div>
         )
-      case 'vehicle':
+      case 'vehicles':
         const { model, vehicle_class, passengers } = card;
         return (
           <div className='card-text-div'>
