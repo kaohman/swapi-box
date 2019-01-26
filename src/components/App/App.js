@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   getData = async (item) => {
+    console.log(this.state.allCards.findIndex(card => card.type === item))
     if (this.state.allCards.findIndex(card => card.type === item) === -1) {
       this.setState({
         currentPage: 'loading'
