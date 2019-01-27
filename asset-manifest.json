@@ -1,0 +1,16 @@
+{
+  "main.css": "/swapi-box/static/css/main.b83e1e43.chunk.css",
+  "main.js": "/swapi-box/static/js/main.6bc836ab.chunk.js",
+  "main.js.map": "/swapi-box/static/js/main.6bc836ab.chunk.js.map",
+  "static/js/1.313f6a0b.chunk.js": "/swapi-box/static/js/1.313f6a0b.chunk.js",
+  "static/js/1.313f6a0b.chunk.js.map": "/swapi-box/static/js/1.313f6a0b.chunk.js.map",
+  "runtime~main.js": "/swapi-box/static/js/runtime~main.37aee6c8.js",
+  "runtime~main.js.map": "/swapi-box/static/js/runtime~main.37aee6c8.js.map",
+  "static/css/main.b83e1e43.chunk.css.map": "/swapi-box/static/css/main.b83e1e43.chunk.css.map",
+  "static/media/main.scss": "/swapi-box/static/media/stars-background2.7b06a69c.jpg",
+  "static/media/darth-vader.png": "/swapi-box/static/media/darth-vader.9fd74298.png",
+  "static/media/yoda.png": "/swapi-box/static/media/yoda.6d3b9a29.png",
+  "index.html": "/swapi-box/index.html",
+  "precache-manifest.2eb991501a1a1cda4e144ca482ce3f73.js": "/swapi-box/precache-manifest.2eb991501a1a1cda4e144ca482ce3f73.js",
+  "service-worker.js": "/swapi-box/service-worker.js"
+}
