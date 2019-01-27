@@ -52,7 +52,8 @@ class App extends Component {
       });
     } 
     this.setState({
-      currentPage: item
+      currentPage: item,
+      show10: true
     });
   }
 
@@ -186,16 +187,17 @@ class App extends Component {
       contentToDisplay = <Loading />
     } else {
       let cardsToDisplay = currentPage === 'favorites' ? allCards.filter(card => favorites.includes(card.id)) : allCards.filter(card => card.type === currentPage);
-      cardsToDisplay = show10 === true ? cardsToDisplay.splice(0, 10) : cardsToDisplay;
       contentToDisplay = 
-      <CardContainer 
-        cards={cardsToDisplay} 
-        favorites={favorites}
-        toggleFavorite={this.toggleFavorite}
-        currentPage={currentPage}
-        show10={show10}
-        toggleShownCards={this.toggleShownCards}
-      />;
+      <div>
+        <CardContainer 
+          cards={cardsToDisplay} 
+          favorites={favorites}
+          toggleFavorite={this.toggleFavorite}
+          currentPage={currentPage}
+          show10={show10}
+          toggleShownCards={this.toggleShownCards}
+        />
+      </div>
     }
     return (
       <div>

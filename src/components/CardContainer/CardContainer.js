@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import PropTypes from 'prop-types';
 
 const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, toggleShownCards}) => {
-
+  const cardsToDisplay = show10 === true ? cards.splice(0, 10) : cards;
 
   if (currentPage === 'favorites' && favorites.length === 0) {
     return (
@@ -16,7 +16,7 @@ const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, t
     return (
       <div id='card-container'>
         {
-          cards.map(card => {
+          cardsToDisplay.map(card => {
             return(
               <Card
                 card={card}
@@ -28,10 +28,8 @@ const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, t
           })
         }
         <div>
-          <button onClick={() => toggleShownCards()}>
-          {
-            show10 === true ? 'Show More' : 'Show Less'
-          }
+          <button onClick={() => toggleShownCards()} disabled={cards.length <= 10 ? true : false}>
+            {show10 === true ? 'Show More' : 'Show Less'}
           </button>
         </div>
       </div>
