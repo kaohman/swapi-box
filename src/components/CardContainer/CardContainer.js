@@ -27,8 +27,8 @@ const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, t
             )
           })
         }
-        <div>
-          <button onClick={() => toggleShownCards()} disabled={cards.length <= 10 ? true : false}>
+        <div id='show-button-div'>
+          <button id='show-button' onClick={() => toggleShownCards()} disabled={cards.length <= 10 ? true : false}>
             {show10 === true ? 'Show More' : 'Show Less'}
           </button>
         </div>
