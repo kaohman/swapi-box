@@ -35,4 +35,50 @@
   }
 }
 
+@media (max-width: 1100px) {
+    #landing-container {
+    position: absolute;
+    left: 150px;
+    top: 200px;
+  }
+}
+
+@media (max-width: 800px) {
+    #landing-container {
+    position: absolute;
+    left: 50px;
+    top: 200px;
+    width: 80%;
+  }
+
+  .landing-text {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+    #landing-container {
+    position: absolute;
+    left: 50px;
+    top: 380px;
+    height: 300px;
+  }
+
+  .landing-text {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+    #landing-container {
+    position: absolute;
+    left: 30px;
+    top: 400px;
+    height: 200px;
+  }
+
+  .landing-text {
+    font-size: 30px;
+  }
+}
 

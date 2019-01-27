@@ -426,6 +426,18 @@ describe('App', () => {
       // expectation
       expect(wrapper.state('favorites')).toEqual(expected);
     });
+
+    it('should be able to add favorite to localStorage', () => {
+      // setup
+      // execution 
+      // expectation
+    });
+
+    it('should be able to remove favorite to localStorage', () => {
+      // setup
+      // execution 
+      // expectation
+    });
   });
 
   describe('showFavorites', () => {
@@ -433,59 +445,74 @@ describe('App', () => {
 
     beforeEach(() => {
       wrapper = shallow(<App />);
-
+      wrapper.instance().getData = jest.fn();
       wrapper.setState({
-        currentPage: 'loaded'
+        currentPage: 'loading'
       })
     });
 
-    it('should update currentPage to favorites in state', () => {
+    it('should call getData three times', async () => {
+      // setup
+      const expected = 3;
+      // execution
+      await wrapper.instance().showFavorites();
+      // expectation
+      expect(wrapper.instance().getData.mock.calls.length).toBe(expected);
+    });
+
+    it('should update currentPage to favorites in state', async () => {
       // setup
       const expected = 'favorites';
       // execution
-      wrapper.instance().showFavorites();
+      await wrapper.instance().showFavorites();
       // expectation
       expect(wrapper.state('currentPage')).toEqual(expected);
     });
   });
 
-  // describe('componentDidMount', () => {
-  //   let wrapper;
-  //   let mockData;
-  //   let url;
+  describe('componentDidMount', () => {
+    let wrapper;
+    let mockData;
+    let url;
 
-  //   beforeEach(() => {
-  //     url = 'https://swapi.co/api/films/1/';
-  //     mockData = { opening_crawl: 'test text', title: 'star wars movie', release_date: '2005-11-20'};
-  //     wrapper = shallow(<App />);
-  //     API.fetch = jest.fn().mockImplementation(() => {
-  //       return mockdata
-  //     });
-  //     wrapper.setState({
-  //       currentPage: 'loading',
-  //       scrollText: {},
-  //     })
-  //   });
+    beforeEach(() => {
+      url = 'https://swapi.co/api/films/1/';
+      mockData = { opening_crawl: 'test text', title: 'star wars movie', release_date: '2005-11-20'};
+      wrapper = shallow(<App />);
+      API.fetch = jest.fn().mockImplementation(() => {
+        return mockdata
+      });
+      wrapper.setState({
+        currentPage: 'loading',
+        scrollText: {},
+      })
+    });
 
-  //   it('should call fetch with the correct parameters', async () => {
-  //     // setup
-  //     const expected = url;
-  //     // execution 
-  //     await wrapper.instance().componentDidMount();
-  //     // expectation
-  //     expect(API.fetchData).toHaveBeenCalledWith(expected);
-  //   });
+    it.skip('should call fetch with the correct parameters', async () => {
+      // setup
+      const expected = url;
+      // execution 
+      await wrapper.instance().componentDidMount();
+      // expectation
+      expect(API.fetchData).toHaveBeenCalledWith(expected);
+    });
 
-  //   it('should update default scrollText and currentPage in state', async () => {
-  //     // execution 
-  //     await wrapper.instance().componentDidMount();
-  //     // expectation
-  //     expect(wrapper.state('scrollText')).toEqual({
-  //       text: 'test text',
-  //       title: 'star wars movie',
-  //       date: '2005-11-20'
-  //     });
-  //     expect(wrapper.state('currentPage')).toEqual('landing');
-  //   });
-  // });
+    it.skip('should get favorites from local storage and set them to state', async () => {
+      // setup
+      // execution 
+      // expectation
+    });
+
+    it.skip('should update default scrollText and currentPage in state', async () => {
+      // execution 
+      await wrapper.instance().componentDidMount();
+      // expectation
+      expect(wrapper.state('scrollText')).toEqual({
+        text: 'test text',
+        title: 'star wars movie',
+        date: '2005-11-20'
+      });
+      expect(wrapper.state('currentPage')).toEqual('landing');
+    });
+  });
 });

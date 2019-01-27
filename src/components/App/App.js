@@ -130,24 +130,34 @@ class App extends Component {
     } else {
       newFavorites = [ ...favorites, id ];
     }
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
     this.setState({
       favorites: newFavorites
     });
   }
 
-  showFavorites = () => {
-    this.setState({
+  showFavorites = async () => {
+    await this.getData('people');
+    await this.getData('planets');
+    await this.getData('vehicles');
+    await this.setState({
       currentPage: 'favorites'
     });
   }
 
   componentDidMount = async () => {
+    if (localStorage.hasOwnProperty('favorites')) {
+      const favorites = JSON.parse(localStorage.getItem('favorites'));
+      this.setState({
+        favorites
+      });
+    }
+
     let filmId = Math.floor(Math.random() * 7)+1;
     try {
-      const response = await fetch(`https://swapi.co/api/films/${filmId}`);
-      const result = await response.json();
+      const result = await API.fetchData(`https://swapi.co/api/films/${filmId}`);
       const { opening_crawl, title, release_date } = result;
-      this.setState({
+      await this.setState({
         scrollText: { 
           text: opening_crawl,
           title: title,
