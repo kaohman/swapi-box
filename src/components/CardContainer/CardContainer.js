@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import PropTypes from 'prop-types';
 
 const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, toggleShownCards}) => {
-  const cardsToDisplay = show10 === true ? cards.splice(0, 10) : cards;
+  const cardsToDisplay = show10 === true ? cards.slice().splice(0, 10) : cards;
 
   if (currentPage === 'favorites' && favorites.length === 0) {
     return (

@@ -33,6 +33,10 @@ h3 {
   width: 30px;
   height: 30px;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     background: url('./images/star-blue.png');
     background-size: cover;
