@@ -13,7 +13,7 @@ const ControlForm = ({ getData, activeButton, favoritesCount, showFavorites }) =
             key={label}
             id={label.toLowerCase()}
             className= {
-              activeButton === label.toLowerCase() ? 'active' : 'inactive'
+              activeButton === label.toLowerCase() ? 'control-button active' : 'control-button inactive'
             }
           >{label}</button>
         )
@@ -22,7 +22,7 @@ const ControlForm = ({ getData, activeButton, favoritesCount, showFavorites }) =
       <button 
         onClick={(event) => showFavorites(event.target.id)}
       id='favorites'
-        className={activeButton === 'favorites' ? 'active' : 'inactive'}
+        className={activeButton === 'favorites' ? 'control-button active' : 'control-button inactive'}
       >
         View {favoritesCount} Favorites
       </button>

@@ -29,6 +29,27 @@ h2 {
   text-align: center;
 }
 
+.control-button,
+.show-button {
+  box-shadow: 2px 2px 10px black;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: $content-font;
+  text-transform: uppercase;
+  border-radius: 5px;
+  background: radial-gradient(#fcd800, #f7b600);
+  padding: 10px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover:enabled {
+    background: radial-gradient(gold, aqua);
+  }
+}
+
 .no-cards-container {
   margin-top: 40px;
 }
