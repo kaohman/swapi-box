@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "/swapi-box/static/js/runtime~main.37aee6c8.js"
   },
   {
-    "revision": "6bc836abdb7c54f4a4a6",
-    "url": "/swapi-box/static/js/main.6bc836ab.chunk.js"
+    "revision": "20a66e1341a5e8ea51b2",
+    "url": "/swapi-box/static/js/main.20a66e13.chunk.js"
   },
   {
     "revision": "313f6a0baf67845e41a7",
     "url": "/swapi-box/static/js/1.313f6a0b.chunk.js"
   },
   {
-    "revision": "6bc836abdb7c54f4a4a6",
-    "url": "/swapi-box/static/css/main.b83e1e43.chunk.css"
+    "revision": "20a66e1341a5e8ea51b2",
+    "url": "/swapi-box/static/css/main.62860a3e.chunk.css"
   },
   {
-    "revision": "912cf4fd7fcdbff1289cac2b4c677723",
+    "revision": "496dc59ee3839de5e0838ef3eefcd504",
     "url": "/swapi-box/index.html"
   }
 ];
