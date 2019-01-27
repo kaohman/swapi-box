@@ -145,9 +145,11 @@ class App extends Component {
   }
 
   showFavorites = async () => {
-    await this.getData('people');
-    await this.getData('planets');
-    await this.getData('vehicles');
+    if (this.state.favorites.length > 0) {
+      await this.getData('people');
+      await this.getData('planets');
+      await this.getData('vehicles');
+    }
     await this.setState({
       currentPage: 'favorites'
     });
