@@ -426,18 +426,6 @@ describe('App', () => {
       // expectation
       expect(wrapper.state('favorites')).toEqual(expected);
     });
-
-    it('should be able to add favorite to localStorage', () => {
-      // setup
-      // execution 
-      // expectation
-    });
-
-    it('should be able to remove favorite to localStorage', () => {
-      // setup
-      // execution 
-      // expectation
-    });
   });
 
   describe('showFavorites', () => {
@@ -497,10 +485,14 @@ describe('App', () => {
       expect(API.fetchData).toHaveBeenCalledWith(expected);
     });
 
-    it.skip('should get favorites from local storage and set them to state', async () => {
+    it('should get favorites from local storage and set them to state', async () => {
       // setup
+      const expected = ['https://swapi.co/api/people/5/'];
+      localStorage.setItem('favorites', JSON.stringify(expected));
       // execution 
+      await wrapper.instance().componentDidMount()
       // expectation
+      expect(wrapper.state('favorites')).toEqual(expected);
     });
 
     it.skip('should update default scrollText and currentPage in state', async () => {
