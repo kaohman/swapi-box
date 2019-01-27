@@ -2,7 +2,9 @@ import React from 'react';
 import Card from '../Card/Card';
 import PropTypes from 'prop-types';
 
-const CardContainer = ({cards, favorites, toggleFavorite, currentPage}) => {
+const CardContainer = ({cards, favorites, toggleFavorite, currentPage, show10, toggleShownCards}) => {
+
+
   if (currentPage === 'favorites' && favorites.length === 0) {
     return (
       <div className='no-cards-container'>
@@ -25,6 +27,13 @@ const CardContainer = ({cards, favorites, toggleFavorite, currentPage}) => {
             )
           })
         }
+        <div>
+          <button onClick={() => toggleShownCards()}>
+          {
+            show10 === true ? 'Show More' : 'Show Less'
+          }
+          </button>
+        </div>
       </div>
     )
   }

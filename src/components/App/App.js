@@ -16,7 +16,14 @@ class App extends Component {
       allCards: [],
       scrollText: {},
       favorites: [],
+      show10: true
     }
+  }
+
+  toggleShownCards = () => {
+    this.setState({
+      show10: !this.state.show10
+    });
   }
 
   getData = async (item) => {
@@ -171,20 +178,23 @@ class App extends Component {
   }
 
   render() {
-    const { scrollText, currentPage, favorites, allCards } = this.state;
-    const cardsToDisplay = currentPage === 'favorites' ? allCards.filter(card => favorites.includes(card.id)) : allCards.filter(card => card.type === currentPage);
+    const { scrollText, currentPage, favorites, allCards, show10 } = this.state;
     let contentToDisplay;
     if (currentPage === 'landing') {
       contentToDisplay = <Landing {...scrollText} />;
     } else if (currentPage === 'loading') {
       contentToDisplay = <Loading />
     } else {
+      let cardsToDisplay = currentPage === 'favorites' ? allCards.filter(card => favorites.includes(card.id)) : allCards.filter(card => card.type === currentPage);
+      cardsToDisplay = show10 === true ? cardsToDisplay.splice(0, 10) : cardsToDisplay;
       contentToDisplay = 
       <CardContainer 
         cards={cardsToDisplay} 
         favorites={favorites}
         toggleFavorite={this.toggleFavorite}
         currentPage={currentPage}
+        show10={show10}
+        toggleShownCards={this.toggleShownCards}
       />;
     }
     return (

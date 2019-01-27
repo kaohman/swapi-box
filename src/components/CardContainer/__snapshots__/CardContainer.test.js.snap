@@ -24,5 +24,12 @@ exports[`CardContainer should match the snapshot with all data passed in 1`] = `
     }
     toggleFavorite={[MockFunction]}
   />
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Show Less
+    </button>
+  </div>
 </div>
 `;

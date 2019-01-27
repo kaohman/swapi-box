@@ -20,7 +20,8 @@ describe('App', () => {
         currentPage: 'landing',
         scrollText: {},
         favorites: [],
-        allCards: []
+        allCards: [],
+        show10: true
       })
     });
 
@@ -33,7 +34,8 @@ describe('App', () => {
         currentPage: 'landing',
         scrollText: {},
         favorites: [],
-        allCards: []
+        allCards: [],
+        show10: true
       })
     });
   });
@@ -455,6 +457,29 @@ describe('App', () => {
       await wrapper.instance().showFavorites();
       // expectation
       expect(wrapper.state('currentPage')).toEqual(expected);
+    });
+  });
+
+  describe('toggleshownCards', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<App />);
+
+      wrapper.setState({
+        show10: true
+      })
+    });
+
+    it('should be able update show10 in state', () => {
+      // execution
+      wrapper.instance().toggleShownCards();
+      // expectation
+      expect(wrapper.state('show10')).toEqual(false);
+      // execution
+      wrapper.instance().toggleShownCards();
+      // expectation
+      expect(wrapper.state('show10')).toEqual(true);
     });
   });
 
